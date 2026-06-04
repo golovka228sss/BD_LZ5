@@ -54,7 +54,7 @@ Numbers AS (
 INSERT INTO User_Logs (id, username, user_action, action_date, action_time, action_result)
 SELECT 
     NEWID() AS id,
-    -- Кастуем CHECKSUM к BIGINT во избежание переполнения при ABS()
+    
     N'user_' + CAST(ABS(CAST(CHECKSUM(NEWID()) AS BIGINT)) % 500 + 1 AS NVARCHAR(10)) AS username, 
     
     CASE ABS(CAST(CHECKSUM(NEWID()) AS BIGINT)) % 4
